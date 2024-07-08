@@ -4,8 +4,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '.';
 import { HeaderButton } from '../components/HeaderButton';
 import { TabBarIcon } from '../components/TabBarIcon';
-import One from '../screens/one';
-import Two from '../screens/two';
+import Home from '../screens/home';
+import Categories from '../screens/categories';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,19 +18,35 @@ export default function TabLayout({ navigation }: Props) {
         tabBarActiveTintColor: 'black',
       }}>
       <Tab.Screen
-        name="One"
-        component={One}
+        name="Home"
+        component={Home}
         options={{
-          title: 'Tab One',
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => <HeaderButton onPress={() => navigation.navigate('Modal')} />,
         }}
       />
       <Tab.Screen
-        name="Two"
-        component={Two}
+        name="Categorie List"
+        component={Categories}
         options={{
-          title: 'Tab Two',
+          title: '',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Notification"
+        component={Categories}
+        options={{
+          title: '',
+          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        }}
+      />
+      <Tab.Screen
+        name="Message"
+        component={Categories}
+        options={{
+          title: '',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
