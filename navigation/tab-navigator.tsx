@@ -4,15 +4,13 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { View, StyleSheet } from 'react-native';
 
 import { RootStackParamList } from '.';
-import HeaderHome from '../components/HeaderHome';
+import Header from '../components/Header';
 import Home from '../screens/home';
 import Categories from '../screens/categories';
 import House from 'assets/icons/House';
 import ListCategories from 'assets/icons/ListCategories';
 import Notification from 'assets/icons/Notification';
 import Message from 'assets/icons/Message';
-import Localization from 'components/Localization';
-import HomeConquest from 'components/HeaderConquest';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,29 +21,40 @@ export default function TabLayout({ navigation }: Props) {
     console.log('Selected position:', value);
   };
 
+  const HeaderComponent = () => (
+    <View style={styles.headerContainer}>
+      <Header onPress={() => navigation.navigate('Modal')} description="CURRENT LOCATION" />
+    </View>
+  );
+
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: 'black',
-      }}>
+        tabBarStyle: {
+          height: 60,
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingVertical: 10,
+          backgroundColor: '#FFFFFF',
+        },
+        tabBarIconStyle: {
+          justifyContent: 'center',
+          alignItems: 'center',
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+        },
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           title: '',
           tabBarIcon: ({ color }) => <House color={color} />,
-          headerLeft: () => (
-            <View style={styles.headerContainer}>
-              <HeaderHome onPress={() => navigation.navigate('Modal')} />
-              <Localization 
-                description='CURRENT LOCATION'  
-                />
-              <HomeConquest />
-            </View>
-            
-          ),
+          header: HeaderComponent,
         }}
-        
       />
       <Tab.Screen
         name="Categorie List"
@@ -53,6 +62,7 @@ export default function TabLayout({ navigation }: Props) {
         options={{
           title: '',
           tabBarIcon: ({ color }) => <ListCategories color={color} />,
+          header: HeaderComponent,
         }}
       />
       <Tab.Screen
@@ -61,6 +71,7 @@ export default function TabLayout({ navigation }: Props) {
         options={{
           title: '',
           tabBarIcon: ({ color }) => <Notification color={color} SecondaryColor="#6759FF" width={24} height={24} />,
+          header: HeaderComponent,
         }}
       />
       <Tab.Screen
@@ -69,6 +80,7 @@ export default function TabLayout({ navigation }: Props) {
         options={{
           title: '',
           tabBarIcon: ({ color }) => <Message color={color} />,
+          header: HeaderComponent,
         }}
       />
     </Tab.Navigator>
@@ -77,12 +89,12 @@ export default function TabLayout({ navigation }: Props) {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    display:'flex',
-    width: 600,
-    height: 80,
-    marginTop: 35,
-    backgroundColor: '#FFFFFF',
+    display: 'flex',
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 10,
   },
 });
