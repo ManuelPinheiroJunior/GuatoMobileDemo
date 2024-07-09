@@ -10,8 +10,7 @@ type ScreenContentProps = {
 export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false}>
         {children}
       </ScrollView>
     </View>
@@ -24,6 +23,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: 20,
+    backgroundColor:'red',
+    paddingBottom: 20,
   },
   title: {
     fontSize: 20,
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingHorizontal: 10, 
   },
 });
 

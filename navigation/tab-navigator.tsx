@@ -52,7 +52,7 @@ export default function TabLayout({ navigation }: Props) {
         component={Home}
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <House color={color} />,
+          tabBarIcon: ({ color }) => <House color={'#6759FF'} />,
           header: HeaderComponent,
         }}
       />

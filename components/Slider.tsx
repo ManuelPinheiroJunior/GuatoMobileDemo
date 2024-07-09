@@ -1,15 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Alert from '../assets/icons/alert'; // Verifique se o caminho está correto
+import Alert from '../assets/icons/Alert'; 
 import EllipticalButton from './EllipticalButton';
 
-type SlideProps = {
+type SliderProps = {
   title: string;
   subTitle: string;
   description: string;
 };
 
-const Slide: React.FC<SlideProps> = ({ title, subTitle, description }) => {
+const Slider: React.FC<SliderProps> = ({ title, subTitle, description }) => {
   const handlePress = () => {
     console.log('Offer grabbed!');
   };
@@ -51,10 +51,11 @@ const styles = StyleSheet.create({
   },
   subTitleText: {
     fontSize: 45,
-    fontWeight: '900',
+    fontWeight: '700',
     color: '#1A1D1F',
     marginRight: 5,
+    marginBottom:10,
   },
 });
 
-export default Slide;
+export default Slider;
