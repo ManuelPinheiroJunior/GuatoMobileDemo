@@ -2,7 +2,7 @@ import React from 'react';
 import { ScreenContent } from 'components/ScreenContent';
 import Container from 'components/Container';
 import SearchBar from 'components/SearchBar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CarouselContainer from 'components/CarouselContainer';
 import Slider from 'components/Slider';
 import CircleButton from 'components/CircleButton';
@@ -14,7 +14,9 @@ import ArrowRight from 'assets/icons/ArrowRight';
 import EllipticalButton from 'components/EllipticalButton';
 import SliderImgGroup from 'components/SliderImgGroup';
 
-const cleaningImage = require('assets/Cleaning.png'); // Certifique-se de que o caminho está correto
+const cleaningImage = require('assets/Cleaning.png'); 
+const CarpetCleaning = require('assets/Carpet Cleaning.png'); 
+const OfficeCleaning = require('assets/Office Cleaning.png'); 
 
 export default function Home() {
 
@@ -23,52 +25,57 @@ export default function Home() {
 
   const images = [
     { imageSource: cleaningImage, text: 'Home Cleaning' },
-    { imageSource: cleaningImage, text: 'Carpet Cleaning' },
-    { imageSource: cleaningImage, text: 'Office Cleaning' },
-    // Adicione mais imagens conforme necessário
+    { imageSource: CarpetCleaning, text: 'Carpet Cleaning' },
+    { imageSource: OfficeCleaning, text: '' },
   ];
 
   return (
-    <ScreenContent path="screens/home.tsx" title="">
-      <Container style={styles.container}>
-        <Text style={styles.title}>HELLO ASHFAK</Text>
-        <Text style={styles.body}>What you are looking for today</Text>
-        <SearchBar placeholder="Search what you need..." iconPosition="right" onPress={onProgress} />
-      </Container>
-      <View style={{ ...styles.container, top: 15 }}>
-        <CarouselContainer>
-          <View style={{ ...styles.containerInformation, backgroundColor: '#EAF6EF' }}>
-            <Slider title='Offer AC Service' subTitle='Get 25%' description='Grab Offer' />
-          </View>
-          <View style={[styles.containerInformation, styles.slideTwo]}>
-            <Slider title='Offer AC Service' subTitle='Get 50%' description='Grab Offer' />
-          </View>
-          <View style={[styles.containerInformation, styles.slideThree]}>
-            <Slider title='Offer AC Service' subTitle='Get 75%' description='Grab Offer' />
-          </View>
-        </CarouselContainer>
-      </View>
-      <Container style={{ ...styles.container, flexDirection: 'row', top: 30, height: 150, maxHeight: 120 }}>
-        <CircleButton Icon={AcRepair} backgroundColor="#FFBC99" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='AC Repair' />
-        <CircleButton Icon={Beauty} backgroundColor="#CABDFF" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='Beauty' />
-        <CircleButton Icon={Appliance} backgroundColor="#B1E5FC" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='Appliance' />
-        <CircleButton Icon={ArrowRight} backgroundColor="#FAFAFA" borderColor='#ECECEC' borderWidth={1} iconSize={28} iconColor="#6F767E" onPress={onProgress} subTitle='See All' />
-      </Container>
-      <Container style={{ ...styles.container, top: 50, height: 349, marginBottom: 30 }}>
-        <HeaderCarousel text='Cleaning Services' dividerColor='#CABDFF' ButtonComponent={<EllipticalButton title='See All' onPress={onProgress} style={styles.ellipticalButton} colorText='#6F767E' />} />
-        <View style={styles.carouselContainer}>
-          <SliderImgGroup images={images} />
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <ScreenContent path="screens/home.tsx" title="">
+        <Container style={styles.container}>
+          <Text style={styles.title}>HELLO ASHFAK</Text>
+          <Text style={styles.body}>What you are looking for today</Text>
+          <SearchBar placeholder="Search what you need..." iconPosition="right" onPress={onProgress} />
+        </Container>
+        <View style={{ ...styles.container, top: 15 }}>
+          <CarouselContainer>
+            <View style={{ ...styles.containerInformation, backgroundColor: '#EAF6EF' }}>
+              <Slider title='Offer AC Service' subTitle='Get 25%' description='Grab Offer' />
+            </View>
+            <View style={[styles.containerInformation, styles.slideTwo]}>
+              <Slider title='Offer AC Service' subTitle='Get 50%' description='Grab Offer' />
+            </View>
+            <View style={[styles.containerInformation, styles.slideThree]}>
+              <Slider title='Offer AC Service' subTitle='Get 75%' description='Grab Offer' />
+            </View>
+          </CarouselContainer>
         </View>
-      </Container>
-    </ScreenContent>
+        <Container style={{ ...styles.container, flexDirection: 'row', top: 30, height: 150, maxHeight: 120 }}>
+          <CircleButton Icon={AcRepair} backgroundColor="#FFBC99" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='AC Repair' />
+          <CircleButton Icon={Beauty} backgroundColor="#CABDFF" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='Beauty' />
+          <CircleButton Icon={Appliance} backgroundColor="#B1E5FC" iconSize={28} iconColor="#2C2B46" onPress={onProgress} subTitle='Appliance' />
+          <CircleButton Icon={ArrowRight} backgroundColor="#FAFAFA" borderColor='#ECECEC' borderWidth={1} iconSize={28} iconColor="#6F767E" onPress={onProgress} subTitle='See All' />
+        </Container>
+        <Container style={{ ...styles.container, top: 50, height: 'auto' }}>
+          <HeaderCarousel text='Cleaning Services' dividerColor='#CABDFF' ButtonComponent={<EllipticalButton title='See All' onPress={onProgress} style={styles.ellipticalButton} colorText='#6F767E' />} />
+          <View style={styles.carouselContainer}>
+            <SliderImgGroup images={images} />
+          </View>
+        </Container>
+      </ScreenContent>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingBottom: 30, // Ajuste o espaçamento para não cortar o último contêiner
+  },
   container: {
     padding: 16,
-    width: 380,
-    height: 220,
+    width: '100%', 
+    height: 'auto', 
     gap: 16,
     backgroundColor: '#FFFFFF',
     borderRadius: 8,
@@ -133,12 +140,10 @@ const styles = StyleSheet.create({
     height: 159,
   },
   carouselContainer: {
-    alignItems: 'flex-start', 
-    justifyContent: 'center', 
-    padding: 10,
+    alignItems: 'center',
   },
   sliderItem: {
-    alignItems: 'flex-start', // Alinha cada SliderImg à esquerda
-    marginHorizontal: 5, // Ajuste para espaçamento horizontal entre os itens
+    alignItems: 'flex-start',
+    marginHorizontal: 5, 
   },
 });

@@ -20,22 +20,13 @@ export const ScreenContent = ({ title, path, children }: ScreenContentProps) => 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
     paddingTop: 20,
-    backgroundColor:'red',
-    paddingBottom: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    // paddingBottom: 5,
   },
   scrollViewContent: {
     flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingHorizontal: 10, 
+    paddingHorizontal: 10,
+    paddingBottom: 20, 
   },
 });
 

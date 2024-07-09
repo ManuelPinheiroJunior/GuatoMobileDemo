@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 
 type SliderImgProps = {
   imageSource: any;
@@ -23,21 +23,25 @@ const SliderImg: React.FC<SliderImgProps> = ({ imageSource, text, imageStyle, te
 
 const SliderImgGroup: React.FC<SliderImgGroupProps> = ({ images }) => {
   return (
-    <View style={styles.container}>
-      {images.map((imgProps, index) => (
-        <SliderImg key={index} {...imgProps} />
-      ))}
+    <View style={styles.outerContainer}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollViewContent}>
+        {images.map((imgProps, index) => (
+          <SliderImg key={index} {...imgProps} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  outerContainer: {
+    overflow: 'hidden',
+  },
+  scrollViewContent: {
     flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'flex-start', // Itens alinhados à esquerda
-    alignItems: 'flex-start', // Itens alinhados à esquerda verticalmente
-    padding: 10,
+    alignItems: 'flex-start',
+    paddingStart: 0, 
+    paddingEnd: 60, 
   },
   sliderImgContainer: {
     alignItems: 'center',
