@@ -14,6 +14,7 @@ import Electronics from 'assets/icons/Electronics';
 import Shifting from 'assets/icons/Shifting';
 import MensSalon from 'assets/icons/Mens_Salon';
 import HeaderArticle from 'components/HeaderArticle';
+import { NavigationProp } from '@react-navigation/native';
 
 const categories = [
   {id: 1, icon: AcRepair, backgroundColor: "#FFBC99", subTitle: 'AC Repair' },
@@ -29,16 +30,20 @@ const categories = [
 
 type CategoriesProps = {
   searchText: string;
+  navigation: NavigationProp<any>;
 };
 
-const Categories: React.FC<CategoriesProps> = ({ searchText }) => {
+const Categories: React.FC<CategoriesProps> = ({ searchText, navigation }) => {
   const filteredCategories = searchText
     ? categories.filter(category => 
         category.subTitle.toLowerCase().includes(searchText.toLowerCase())
       )
     : categories;
 
-  const onProgress = () => {};
+ 
+  const onPressCircleButton = () => {
+     navigation.navigate('Category'); 
+  }
 
   return (
     <NativeBaseProvider>
@@ -54,7 +59,7 @@ const Categories: React.FC<CategoriesProps> = ({ searchText }) => {
               size={82}
               subTitleFontSize={18}
               iconColor="#2C2B46"
-              onPress={onProgress}
+              onPress={onPressCircleButton}
               subTitle={category.subTitle}
             />
           ))}

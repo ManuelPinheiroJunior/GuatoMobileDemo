@@ -6,14 +6,16 @@ type HeaderArticleProps = {
   dividerColor?: string;
   text?: string;
   ButtonComponent?: React.ReactNode;
+  ButtonComponenteComplementary?: React.ReactNode;
 };
 
-const HeaderArticle: React.FC<HeaderArticleProps> = ({ dividerColor = '#000', text = '', ButtonComponent }) => {
+const HeaderArticle: React.FC<HeaderArticleProps> = ({ dividerColor = '#000', text = '', ButtonComponent, ButtonComponenteComplementary }) => {
   return (
     <View style={styles.container}>
       <Divider color={dividerColor} thickness={2} style={styles.divider} />
       <Text style={styles.text}>{text}</Text>
       {ButtonComponent}
+      {ButtonComponenteComplementary}
     </View>
   );
 };

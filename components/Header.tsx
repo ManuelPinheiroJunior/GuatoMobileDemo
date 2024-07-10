@@ -48,7 +48,7 @@ const Header = forwardRef<typeof Pressable, HeaderProps>(({ onPress = () => {}, 
           </View>
         </View>
       )}
-      {path === 'CategorieList' && (
+      {(path === 'CategorieList' || path === 'Category')  && (
         <View style={styles.categorieList}>
           <SearchBar
             placeholder="Search Category"

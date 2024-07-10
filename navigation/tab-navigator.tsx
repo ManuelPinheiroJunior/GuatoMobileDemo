@@ -4,8 +4,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 
 import { RootStackParamList } from 'navigation';
-import Header from '../components/Header';
+import Header from 'components/Header';
 import Home from 'screens/home';
+import Category from 'screens/category';
 import Categories from 'screens/categories';
 import House from 'assets/icons/House';
 import ListCategories from 'assets/icons/ListCategories';
@@ -63,16 +64,17 @@ export default function TabLayout({ navigation }: Props) {
           tabBarIcon: ({ color }) => <ListCategories color={color} />,
         }}
       >
-        {(props) => <Categories {...props} searchText={searchText} />}
+        {(props) => <Categories {...props} searchText={searchText} navigation={navigation} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Notification"
+        name="Category"
         options={{
           title: '',
           tabBarIcon: ({ color }) => <Notification color={color} SecondaryColor="#6759FF" width={24} height={24} />,
+          tabBarStyle: { display: 'none' },
         }}
       >
-        {(props) => <Home navigation={navigation} />}
+        {(props) => <Category id={1} name={'w'} navigation={navigation} />}
       </Tab.Screen>
       <Tab.Screen
         name="Message"
