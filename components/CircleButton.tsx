@@ -2,17 +2,17 @@ import IcontType from 'assets/icons/IcontType';
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 
-
 type CircleButtonProps = {
   Icon: React.FC<IcontType>;
   size?: number;
   backgroundColor?: string;
   borderColor?: string;
-   borderWidth?: number;
+  borderWidth?: number;
   onPress: () => void;
   iconSize?: number;
   iconColor?: string;
   subTitle?: string;
+  subTitleFontSize?: number;
 };
 
 const CircleButton = ({
@@ -25,16 +25,17 @@ const CircleButton = ({
   iconSize = 32,
   iconColor = '#fff',
   subTitle,
+  subTitleFontSize = 14,
 }: CircleButtonProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={[styles.button, { backgroundColor, width: size, height: size, borderRadius: size / 2, borderColor, borderWidth}]}
+        style={[styles.button, { backgroundColor, width: size, height: size, borderRadius: size / 2, borderColor, borderWidth }]}
         onPress={onPress}
       >
-        <Icon width={iconSize} height={iconSize} color={iconColor}  />
+        <Icon width={iconSize} height={iconSize} color={iconColor} />
       </TouchableOpacity>
-      {subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
+      {subTitle && <Text style={[styles.subTitle, { fontSize: subTitleFontSize }]}>{subTitle}</Text>}
     </View>
   );
 };
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     marginTop: 8,
-    fontSize: 14,
-    color: '#000',
+    color: '#41405D',
+    fontWeight:'600',
   },
 });
 

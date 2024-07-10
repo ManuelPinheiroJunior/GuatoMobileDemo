@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ScreenContent } from 'components/ScreenContent';
 import Container from 'components/Container';
 import SearchBar from 'components/SearchBar';
@@ -6,21 +6,28 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CarouselContainer from 'components/CarouselContainer';
 import Slider from 'components/Slider';
 import CircleButton from 'components/CircleButton';
-import HeaderCarousel from 'components/HeaderCarousel';
+import HeaderArticle from 'components/HeaderArticle';
 import AcRepair from 'assets/icons/AcRepair';
 import Beauty from 'assets/icons/Beauty';
 import Appliance from 'assets/icons/Appliance';
 import ArrowRight from 'assets/icons/ArrowRight';
 import EllipticalButton from 'components/EllipticalButton';
 import SliderImgGroup from 'components/SliderImgGroup';
+import { NavigationProp } from '@react-navigation/native';
 
 const cleaningImage = require('assets/Cleaning.png'); 
 const CarpetCleaning = require('assets/Carpet Cleaning.png'); 
 const OfficeCleaning = require('assets/Office Cleaning.png'); 
 
-export default function Home() {
+type HomeProps = {
+  navigation: NavigationProp<any>;
+};
+
+const Home: React.FC<HomeProps> = ({ navigation }) => {
+  const [searchText, setSearchText] = useState('');
 
   const onProgress = () => {
+     navigation.navigate('CategorieList'); 
   };
 
   const images = [
@@ -31,11 +38,18 @@ export default function Home() {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
-      <ScreenContent path="screens/home.tsx" title="">
+      <ScreenContent path="home" title="">
         <Container style={styles.container}>
           <Text style={styles.title}>HELLO ASHFAK</Text>
           <Text style={styles.body}>What you are looking for today</Text>
-          <SearchBar placeholder="Search what you need..." iconPosition="right" onPress={onProgress} />
+          <SearchBar 
+            placeholder="Search what you need..." 
+            iconPosition="right" 
+            onPressRight={onProgress} 
+            onChangeText={setSearchText} 
+            value={searchText}
+            navigation={navigation}
+          />
         </Container>
         <View style={{ ...styles.container, top: 15 }}>
           <CarouselContainer>
@@ -57,7 +71,7 @@ export default function Home() {
           <CircleButton Icon={ArrowRight} backgroundColor="#FAFAFA" borderColor='#ECECEC' borderWidth={1} iconSize={28} iconColor="#6F767E" onPress={onProgress} subTitle='See All' />
         </Container>
         <Container style={{ ...styles.container, top: 50, height: 'auto' }}>
-          <HeaderCarousel text='Cleaning Services' dividerColor='#CABDFF' ButtonComponent={<EllipticalButton title='See All' onPress={onProgress} style={styles.ellipticalButton} colorText='#6F767E' />} />
+          <HeaderArticle text='Cleaning Services' dividerColor='#CABDFF' ButtonComponent={<EllipticalButton title='See All' onPress={onProgress} style={styles.ellipticalButton} colorText='#6F767E' />} />
           <View style={styles.carouselContainer}>
             <SliderImgGroup images={images} />
           </View>
@@ -70,7 +84,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   scrollViewContent: {
     flexGrow: 1,
-    paddingBottom: 30, // Ajuste o espaçamento para não cortar o último contêiner
+    paddingBottom: 30,
   },
   container: {
     padding: 16,
@@ -147,3 +161,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 5, 
   },
 });
+
+export default Home

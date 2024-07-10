@@ -2,13 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Divider from './Divider';
 
-type HeaderCarouselProps = {
+type HeaderArticleProps = {
   dividerColor?: string;
   text?: string;
-  ButtonComponent: React.ReactNode;
+  ButtonComponent?: React.ReactNode;
 };
 
-const HeaderCarousel: React.FC<HeaderCarouselProps> = ({ dividerColor = '#000', text = '', ButtonComponent }) => {
+const HeaderArticle: React.FC<HeaderArticleProps> = ({ dividerColor = '#000', text = '', ButtonComponent }) => {
   return (
     <View style={styles.container}>
       <Divider color={dividerColor} thickness={2} style={styles.divider} />
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HeaderCarousel;
+export default HeaderArticle;
