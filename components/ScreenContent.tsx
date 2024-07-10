@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native';
-
-import EditScreenInfo from './EditScreenInfo';
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 type ScreenContentProps = {
   title: string;
@@ -11,28 +10,23 @@ type ScreenContentProps = {
 export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path={path} />
-      {children}
+      <ScrollView contentContainerStyle={styles.scrollViewContent} showsVerticalScrollIndicator={false}>
+        {children}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 20,
   },
-  separator: {
-    backgroundColor: '#d1d5db',
-    height: 1,
-    marginVertical: 30,
-    width: '80%',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+  scrollViewContent: {
+    flexGrow: 1,
+    paddingHorizontal: 10,
+    paddingBottom: 20, 
   },
 });
+
+export default ScreenContent;

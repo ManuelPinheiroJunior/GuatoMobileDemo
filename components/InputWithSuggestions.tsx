@@ -69,9 +69,11 @@ const InputWithSuggestions: React.FC<InputWithIconAndListProps> = ({ placeholder
             placeholder={placeholder}
             onFocus={() => setIsListVisible(true)}
           />
+          <View style={styles.icon}>
           <TouchableOpacity onPress={handleIconPress}>
             <MaterialIcons name="arrow-drop-down" size={25} color="black" />
           </TouchableOpacity>
+        </View>
         </View>
         {isListVisible && (
           <View style={styles.listContainer}>
@@ -94,12 +96,10 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: 'row',
-    minWidth: 180,
+    minWidth: 12,
     justifyContent:"flex-start",
     alignItems: 'flex-start',
     textAlign: 'left',
-
-    width: '100%',
     zIndex: 1,
     fontWeight: '900',
   },
@@ -111,7 +111,11 @@ const styles = StyleSheet.create({
      fontWeight: '600',
   },
   icon: {
-    marginLeft: 10,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: "center",
+    right: 5,
+    top: 2,
   },
   listContainer: {
     position: 'absolute',
