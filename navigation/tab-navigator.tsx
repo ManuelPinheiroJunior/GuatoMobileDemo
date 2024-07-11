@@ -5,8 +5,8 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 
 import { RootStackParamList } from 'navigation';
 import Header from 'components/Header';
-import Home from 'screens/home';
-import Category from 'screens/category';
+import Home from 'screens/Home';
+import Service from 'screens/Service';
 import Categories from 'screens/categories';
 import House from 'assets/icons/House';
 import ListCategories from 'assets/icons/ListCategories';
@@ -20,9 +20,9 @@ type Props = StackScreenProps<RootStackParamList, 'TabNavigator'>;
 export default function TabLayout({ navigation }: Props) {
   const [searchText, setSearchText] = useState('');
 
-  const HeaderComponent = ({ path = '' }) => (
+  const HeaderTabHome = ({ path = '' }) => (
     <SafeAreaView style={styles.headerContainer}>
-      <Header onPress={() => navigation.navigate('Modal')} path={path} onSearch={setSearchText} searchText={searchText} navigation={navigation} />
+      <Header onPress={() => navigation.navigate('SideMenu')} path={path} onSearch={setSearchText} searchText={searchText} navigation={navigation} />
     </SafeAreaView>
   );
 
@@ -45,7 +45,7 @@ export default function TabLayout({ navigation }: Props) {
         tabBarLabelStyle: {
           fontSize: 12,
         },
-        header: () => <HeaderComponent path={route.name} />,
+        header: () => <HeaderTabHome path={route.name} />,
       })}
     >
       <Tab.Screen
@@ -67,14 +67,14 @@ export default function TabLayout({ navigation }: Props) {
         {(props) => <Categories {...props} searchText={searchText} navigation={navigation} />}
       </Tab.Screen>
       <Tab.Screen
-        name="Category"
+        name="Service"
         options={{
           title: '',
           tabBarIcon: ({ color }) => <Notification color={color} SecondaryColor="#6759FF" width={24} height={24} />,
           tabBarStyle: { display: 'none' },
         }}
       >
-        {(props) => <Category id={1} name={'w'} navigation={navigation} />}
+        {(props) => <Service id={1} name={'w'} navigation={navigation} />}
       </Tab.Screen>
       <Tab.Screen
         name="Message"

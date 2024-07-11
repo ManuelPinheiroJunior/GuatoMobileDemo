@@ -24,7 +24,7 @@ type CategoryProps = {
   navigation: NavigationProp<any>;
 };
 
-const Category: React.FC<CategoryProps> = ({ id, name, navigation }) => {
+const Service: React.FC<CategoryProps> = ({ id, name, navigation }) => {
   const onPress = () => {
     navigation.navigate('CategorieList');
   }
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category;
+export default Service;
