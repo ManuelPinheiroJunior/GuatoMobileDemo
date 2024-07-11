@@ -13,7 +13,7 @@ const HeaderMain: React.FC<Props> = ({ path, navigation }) => {
 
   return (
     <SafeAreaView style={styles.headerContainer}>
-      <Header onPress={() => navigation.navigate('SideBar')} path={path} onSearch={setSearchText} searchText={searchText} navigation={navigation} />
+      <Header onPress={() => navigation.navigate('SideMenu')} path={path} onSearch={setSearchText} searchText={searchText} navigation={navigation} />
     </SafeAreaView>
   );
 };

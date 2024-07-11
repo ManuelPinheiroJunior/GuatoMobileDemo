@@ -10,7 +10,7 @@ const getSvgContent = (color: string) => `
 </svg>
 `;
 
-const DarkIcon: React.FC<IcontType> = ({ color = 'white', width = 18, height = 18 }) => {
+const DarkIcon: React.FC<IcontType> = ({ color = 'white', width = 24, height = 24 }) => {
   return (
     <View style={styles.container}>
       <SvgXml xml={getSvgContent(color)} width={width} height={height} />

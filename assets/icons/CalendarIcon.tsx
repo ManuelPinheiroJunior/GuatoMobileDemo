@@ -11,7 +11,7 @@ const getSvgContent = (color: string) => `
 </svg>
 `;
 
-const CalendarIcon: React.FC<IcontType> = ({ color = '#6759FF', width = 18, height = 18 }) => {
+const CalendarIcon: React.FC<IcontType> = ({ color = '#6759FF', width = 24, height = 24 }) => {
   return (
     <View style={styles.container}>
       <SvgXml xml={getSvgContent(color)} width={width} height={height} />

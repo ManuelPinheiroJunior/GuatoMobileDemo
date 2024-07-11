@@ -10,6 +10,9 @@ import HeaderMain from '../components/HeaderMain';
 export type RootStackParamList = {
   TabNavigator: undefined;
   SideMenu: undefined;
+  Profile: undefined;
+  Serice: undefined;
+  Home: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

@@ -4,6 +4,7 @@ import { Octicons } from '@expo/vector-icons';
 import InputWithSuggestions from './InputWithSuggestions';
 import Medal from 'assets/icons/Medal';
 import SearchBar from './SearchBar';
+import ArrowLeft from 'assets/icons/ArrowLeft';
 
 type HeaderProps = {
   onPress?: () => void;
@@ -48,7 +49,7 @@ const Header = forwardRef<typeof Pressable, HeaderProps>(({ onPress = () => {}, 
           </View>
         </View>
       )}
-      {(path === 'CategorieList' || path === 'Category')  && (
+      {(path === 'Categories' || path === 'Service')  && (
         <View style={styles.categorieList}>
           <SearchBar
             placeholder="Search Category"
@@ -59,6 +60,11 @@ const Header = forwardRef<typeof Pressable, HeaderProps>(({ onPress = () => {}, 
           />
         </View>
       )}
+      {
+        path === 'Profile' && (
+          <ArrowLeft />
+        )
+      }
     </>
   );
 });

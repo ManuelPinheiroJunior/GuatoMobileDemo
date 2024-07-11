@@ -42,12 +42,12 @@ const Categories: React.FC<CategoriesProps> = ({ searchText, navigation }) => {
 
  
   const onPressCircleButton = () => {
-     navigation.navigate('Category'); 
+     navigation.navigate('Service'); 
   }
 
   return (
     <NativeBaseProvider>
-      <ScreenContent path="CategorieList" title="CategorieList">
+      <ScreenContent path="Categories" title="Categories">
         <Container style={styles.container}>
           <HeaderArticle text='All Categories' dividerColor='#CABDFF' />
           {filteredCategories.map((category, index) => (

@@ -11,7 +11,7 @@ const getSvgContent = (color: string) => `
 </svg>
 `;
 
-const AddressIcon: React.FC<IcontType> = ({ color = '#D1D3D4', width = 18, height = 18 }) => {
+const AddressIcon: React.FC<IcontType> = ({ color = '#D1D3D4', width = 24, height = 24 }) => {
   return (
     <View style={styles.container}>
       <SvgXml xml={getSvgContent(color)} width={width} height={height} />

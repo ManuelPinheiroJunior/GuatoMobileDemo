@@ -18,7 +18,7 @@ const getSvgContent = (color: string) => `
 </svg>
 `;
 
-const LightIcon: React.FC<IcontType> = ({ color = '#1A1D1F', width = 18, height = 18 }) => {
+const LightIcon: React.FC<IcontType> = ({ color = '#1A1D1F', width = 24, height = 24 }) => {
   return (
     <View style={styles.container}>
       <SvgXml xml={getSvgContent(color)} width={width} height={height} />

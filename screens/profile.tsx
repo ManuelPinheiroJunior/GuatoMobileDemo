@@ -4,7 +4,7 @@ import { Input, Button, VStack, FormControl, Select, CheckIcon, Center } from 'n
 import { SafeAreaView, ScrollView } from 'react-native';
 import { ScreenContent } from '../components/ScreenContent';
 
-const UserProfilePage = () => {
+const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserProfilePage;
+export default Profile;
