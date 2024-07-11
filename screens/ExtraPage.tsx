@@ -2,49 +2,62 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Image, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import ScreenContent from '../components/ScreenContent';
+import PointsEdit from 'assets/icons/PointsEdit';
 
-// Definindo tipos para os dados da API
-type DogBreed = {
+type Character = {
   id: number;
   name: string;
-  temperament: string;
-  image?: {
-    url?: string;
-  };
+  status: string;
+  species: string;
+  image: string;
 };
 
-const DogList: React.FC = () => {
-  const [dogBreeds, setDogBreeds] = useState<DogBreed[]>([]);
+const CharacterList: React.FC = () => {
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchDogBreeds();
+    fetchCharacters();
   }, []);
 
-  const fetchDogBreeds = async () => {
+  const fetchCharacters = async () => {
     try {
-      const response = await axios.get<DogBreed[]>('https://api.thedogapi.com/v1/breeds');
-      console.log(response);
-      setDogBreeds(response.data);
+      const response = await axios.get('https://rickandmortyapi.com/api/character');
+      setCharacters(response.data.results);
       setLoading(false);
     } catch (error) {
-      console.error("Error fetching dog breeds:", error);
+      console.error("Error fetching characters:", error);
       setLoading(false);
     }
   };
 
-  const renderItem = ({ item }: { item: DogBreed }) => (
-    <View style={styles.itemContainer}>
-      {item.image && item.image.url ? (
-        <Image source={{ uri: item.image.url }} style={styles.image} />
-      ) : (
-        <View style={styles.placeholderImage}>
-          <Text style={styles.placeholderText}>No Image</Text>
+  const getSpeciesBackgroundColor = (species: string) => {
+    switch (species) {
+      case 'Human':
+        return '#A3D8F4';
+      case 'Alien':
+        return '#A3F4A3';
+      case 'Robot':
+        return '#F4E3A3';
+      default:
+        return '#F4A3A3';
+    }
+  };
+
+  const renderItem = ({ item }: { item: Character }) => (
+    <View style={styles.categoryContainer}>
+      <Image source={{ uri: item.image }} style={styles.categoryImage} />
+      <View style={styles.categoryInfo}>
+        <View style={styles.statusContainer}>
+          <Text style={styles.statusText}>{item.status}</Text>
+          <Text style={[styles.speciesText, { backgroundColor: getSpeciesBackgroundColor(item.species) }]}>
+            {item.species}
+          </Text>
         </View>
-      )}
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.description}>{item.temperament}</Text>
+        <Text style={styles.categoryName}>{item.name}</Text>
+        <View style={styles.pointsEditIcon}>
+          <PointsEdit />
+        </View>
       </View>
     </View>
   );
@@ -58,9 +71,9 @@ const DogList: React.FC = () => {
   }
 
   return (
-    <ScreenContent path="ExtraPage" title="ExtraPage">
+    <ScreenContent path="Characters" title="Characters">
       <FlatList
-        data={dogBreeds}
+        data={characters}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.listContainer}
@@ -73,39 +86,53 @@ const styles = StyleSheet.create({
   listContainer: {
     padding: 16,
   },
-  itemContainer: {
+  categoryContainer: {
     flexDirection: 'row',
-    marginBottom: 16,
+    alignItems: 'center',
+    padding: 10,
+    marginVertical: 8,
     backgroundColor: '#fff',
     borderRadius: 8,
-    overflow: 'hidden',
-    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
   },
-  image: {
-    width: 100,
-    height: 100,
+  categoryImage: {
+    width: 105,
+    height: 105,
+    marginRight: 16,
+    borderRadius: 8,
   },
-  placeholderImage: {
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ccc',
-  },
-  placeholderText: {
-    color: '#666',
-  },
-  textContainer: {
+  categoryInfo: {
     flex: 1,
-    padding: 8,
+    position: 'relative',
   },
-  title: {
+  statusContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  statusText: {
+    fontSize: 14,
+    marginLeft: 4,
+    marginRight: 8,
+  },
+  speciesText: {
+    fontSize: 14,
+    color: '#fff',
+    borderRadius: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  categoryName: {
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 4,
   },
-  description: {
-    fontSize: 14,
-    color: '#666',
+  pointsEditIcon: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
   loadingContainer: {
     flex: 1,
@@ -114,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DogList;
+export default CharacterList;

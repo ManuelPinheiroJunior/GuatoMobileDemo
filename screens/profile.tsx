@@ -3,6 +3,13 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import { Input, Button, VStack, FormControl, Select, CheckIcon, Center } from 'native-base';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { ScreenContent } from '../components/ScreenContent';
+import Container from 'components/Container';
+import HeaderArticle from 'components/HeaderArticle';
+import EllipticalButton from 'components/EllipticalButton';
+import { RootStackParamList } from 'navigation';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+
+const Avatar = require('assets/Avatar.png');
 
 const Profile = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -10,71 +17,93 @@ const Profile = () => {
   const [gender, setGender] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
 
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const onProgress = () => {
+    navigation.navigate('Home'); 
+  };
+
   return (
     <ScreenContent path="Profile" title="Profile">
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <Center>
-          <View style={styles.profileContainer}>
-            <Image
-              source={{ uri: 'https://example.com/avatar.png' }}
-              style={styles.avatar}
-            />
-            <Text style={styles.name}>John Doe</Text>
-            <Text style={styles.email}>john.doe@example.com</Text>
-          </View>
-          <VStack space={4} style={styles.formContainer}>
-            <FormControl isRequired>
-              <FormControl.Label>Phone Number</FormControl.Label>
-              <Input
-                value={phoneNumber}
-                onChangeText={setPhoneNumber}
-                placeholder="Enter phone number"
-                keyboardType="phone-pad"
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label>Email</FormControl.Label>
-              <Input
-                value={email}
-                onChangeText={setEmail}
-                placeholder="Enter email"
-                keyboardType="email-address"
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label>Gender</FormControl.Label>
-              <Select
-                selectedValue={gender}
-                minWidth={200}
-                placeholder="Select gender"
-                onValueChange={(itemValue) => setGender(itemValue)}
-                _selectedItem={{
-                  bg: "cyan.600",
-                  endIcon: <CheckIcon size="5" />
-                }}
-              >
-                <Select.Item label="Male" value="male" />
-                <Select.Item label="Female" value="female" />
-                <Select.Item label="Other" value="other" />
-              </Select>
-            </FormControl>
-            <FormControl isRequired>
-              <FormControl.Label>Date of Birth</FormControl.Label>
-              <Input
-                value={dateOfBirth}
-                onChangeText={setDateOfBirth}
-                placeholder="YYYY-MM-DD"
-                keyboardType="numeric"
-              />
-            </FormControl>
-            <Button onPress={() => console.log('Profile updated!')}>
-              Update Profile
-            </Button>
-          </VStack>
-        </Center>
-      </ScrollView>
-    </SafeAreaView>
+      <HeaderArticle 
+        text='Profile' 
+        dividerColor='#CABDFF' 
+        ButtonComponent={
+          <EllipticalButton 
+            title='Edit Profile' 
+            onPress={onProgress} 
+            style={styles.ellipticalButton} 
+            fontText={12}
+            colorText='#6759FF' 
+            showEditProfileIcon={true} 
+          />
+        } 
+      />
+      <Container style={{ ...styles.container, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', top: 15 }}>
+        <Image source={Avatar} style={styles.avatar} />
+        <View style={styles.textContainer}>
+          <Text style={styles.name}>Ashfak Sayem</Text>
+          <Text style={styles.email}>@ashfaksayem</Text>
+        </View>
+      </Container>
+      <Container style={{...styles.profileDetailsContainer, top: 12}}>
+        <SafeAreaView style={styles.safeArea}>
+          <ScrollView contentContainerStyle={styles.scrollViewContent}>
+            <Center>
+              <VStack space={2} style={styles.formContainer}>
+                <FormControl  width={325}>
+                  <FormControl.Label color={'black'} >Phone Number</FormControl.Label>
+                  <Input
+                    value={phoneNumber}
+                    onChangeText={setPhoneNumber}
+                    placeholder="Enter phone number"
+                    keyboardType="phone-pad"
+                    style={styles.input}
+                  />
+                </FormControl>
+                <FormControl width={325} >
+                  <FormControl.Label>Email</FormControl.Label>
+                  <Input
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="Enter email"
+                    keyboardType="email-address"
+                    style={styles.input}
+                  />
+                </FormControl>
+                <FormControl >
+                  <FormControl.Label>Gender</FormControl.Label>
+                  <Select
+                    selectedValue={gender}
+                    minWidth="100%"
+                    placeholder="Select gender"
+                    onValueChange={(itemValue) => setGender(itemValue)}
+                    _selectedItem={{
+                      bg: "cyan.600",
+                      endIcon: <CheckIcon size="5" />
+                    }}
+                    style={styles.input}
+                  >
+                    <Select.Item label="Male" value="male" />
+                    <Select.Item label="Female" value="female" />
+                    <Select.Item label="Other" value="other" />
+                  </Select>
+                </FormControl>
+                <FormControl >
+                  <FormControl.Label width={325} >Date of Birth</FormControl.Label>
+                  <Input
+                    value={dateOfBirth}
+                    onChangeText={setDateOfBirth}
+                    placeholder="YYYY-MM-DD"
+                    keyboardType="numeric"
+                    style={styles.input}
+                  />
+                </FormControl>
+              </VStack>
+            </Center>
+          </ScrollView>
+        </SafeAreaView>
+      </Container>
     </ScreenContent>
   );
 };
@@ -83,25 +112,40 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
+  container: {
+    padding: 16,
+    width: '100%', 
+    height: 'auto', 
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+  },
+  profileDetailsContainer: {
+    padding: 16,
+    width: '100%',
+    height: 'auto',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    marginTop: 20,
+  },
+  textContainer: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
   scrollViewContent: {
     flexGrow: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
   },
-  profileContainer: {
-    alignItems: 'center',
-    marginBottom: 16,
-  },
   avatar: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    marginBottom: 8,
+    width: 56,
+    height: 56,
+    borderRadius: 48,
+    marginRight: 16,
   },
   name: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: 'bold',
+    color: '#1A1D1F',
   },
   email: {
     fontSize: 14,
@@ -109,7 +153,20 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: '100%',
+    alignItems: 'flex-start',
+    color: 'black',
+    fontWeight: '800',
+  },
+  input: {
+    width: '100%',
+  },
+  ellipticalButton: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#EFEFEF',
+    borderWidth: 1,
+    height: 35,
+    width: 108,
   },
 });
 

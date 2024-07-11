@@ -10,7 +10,7 @@ const getSvgContent = (color: string) => `
 </svg>
 `;
 
-const EditProfile: React.FC<IcontType> = ({ color = '#6759FF', width = 18, height = 18 }) => {
+const EditProfile: React.FC<IcontType> = ({ color = '#6759FF', width = 14, height = 14 }) => {
   return (
     <View style={styles.container}>
       <SvgXml xml={getSvgContent(color)} width={width} height={height} />

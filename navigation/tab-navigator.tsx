@@ -83,7 +83,7 @@ export default function TabLayout({ navigation }: Props) {
         name="Profile"
         options={{
           title: '',
-          tabBarIcon: ({ color }) => <Notification color={color} SecondaryColor="#6759FF" width={24} height={24} />,
+          tabBarButton: () => null, 
           tabBarStyle: { display: 'none' },
         }}
       >
