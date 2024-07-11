@@ -24,14 +24,14 @@ type CategoryProps = {
   navigation: NavigationProp<any>;
 };
 
-const Category: React.FC<CategoryProps> = ({ id, name, navigation }) => {
+const Service: React.FC<CategoryProps> = ({ id, name, navigation }) => {
   const onPress = () => {
-    navigation.navigate('CategorieList');
+    navigation.navigate('Service');
   }
 
   return (
     <NativeBaseProvider>
-      <ScreenContent path="Category" title="Category">
+      <ScreenContent path="Categories" title="Categories">
         <ScrollView contentContainerStyle={styles.scrollViewContent}>
           <Container style={styles.container}>
             <HeaderArticle text='Appliance Repair' dividerColor='#CABDFF'
@@ -144,4 +144,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Category;
+export default Service;

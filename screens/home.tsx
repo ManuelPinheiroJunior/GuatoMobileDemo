@@ -27,7 +27,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
 
   const onProgress = () => {
-     navigation.navigate('CategorieList'); 
+     navigation.navigate('Categories'); 
   };
 
   const images = [
