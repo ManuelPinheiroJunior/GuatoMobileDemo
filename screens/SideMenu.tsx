@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'flex-start',
     paddingVertical: 16,
-    width: '80%', // Certificar-se de que o footer esteja alinhado com os outros elementos
+    width: '80%', 
   },
   footerRow: {
     flexDirection: 'row',
