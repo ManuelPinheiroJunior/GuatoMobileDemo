@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { VStack, Button, HStack, Divider, useColorMode } from 'native-base';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
+import ScreenContent from 'components/ScreenContent';
+import { RootStackParamList } from 'navigation';
 import CalendarIcon from 'assets/icons/CalendarIcon';
 import PaymentMethodsIcon from 'assets/icons/PaymentMethodsIcon';
 import AddressIcon from 'assets/icons/AddressIcon';
@@ -12,8 +14,6 @@ import SupportIcon from 'assets/icons/SupportIcon';
 import QuestionIcon from 'assets/icons/QuestionIcon';
 import LightIcon from 'assets/icons/LightIcon';
 import DarkIcon from 'assets/icons/DarkIcon';
-import ScreenContent from 'components/ScreenContent';
-import { RootStackParamList } from 'navigation';
 
 const Avatar = require('assets/Avatar.png');
 
@@ -24,6 +24,16 @@ const SideMenu = () => {
   const handleNavigation = (route: keyof RootStackParamList) => {
     navigation.navigate(route);
   };
+
+  const menuItems = [
+    { label: 'Calendar', route: 'Calendar', icon: CalendarIcon },
+    { label: 'Payment Methods', route: 'PaymentMethods', icon: PaymentMethodsIcon },
+    { label: 'Address', route: 'Address', icon: AddressIcon },
+    { label: 'Notifications', route: 'Notifications', icon: Notifications },
+    { label: 'Offers', route: 'Offers', icon: OffersIcon },
+    { label: 'Refer a Friend', route: 'ReferFriend', icon: ReferFriendIcon },
+    { label: 'Support', route: 'Support', icon: SupportIcon },
+  ];
 
   return (
     <ScreenContent path="SideBar" title="SideBar">
@@ -39,7 +49,7 @@ const SideMenu = () => {
           {menuItems.map((item, index) => (
             <Button
               key={index}
-           //   onPress={() => handleNavigation(item.route)}
+            //  onPress={() => handleNavigation(item.route)}
               leftIcon={<item.icon color='white' />}
               style={styles.menuItem}
               _pressed={{ backgroundColor: 'white', _text: { color: '#6759FF' } }}
@@ -72,16 +82,6 @@ const SideMenu = () => {
     </ScreenContent>
   );
 };
-
-const menuItems = [
-  { label: 'Calendar', route: 'Calendar', icon: CalendarIcon },
-  { label: 'Payment Methods', route: 'PaymentMethods', icon: PaymentMethodsIcon },
-  { label: 'Address', route: 'Address', icon: AddressIcon },
-  { label: 'Notifications', route: 'Notifications', icon: Notifications },
-  { label: 'Offers', route: 'Offers', icon: OffersIcon },
-  { label: 'Refer a Friend', route: 'ReferFriend', icon: ReferFriendIcon },
-  { label: 'Support', route: 'Support', icon: SupportIcon },
-];
 
 const styles = StyleSheet.create({
   container: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   footer: {
     alignItems: 'flex-start',
     paddingVertical: 16,
-    width: '80%', 
+    width: '80%',
   },
   footerRow: {
     flexDirection: 'row',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     padding: 2,
     borderRadius: 16,
     marginHorizontal: 4,
-    width: 90, 
+    width: 90,
   },
   switchActive: {
     backgroundColor: 'white',
@@ -184,9 +184,6 @@ const styles = StyleSheet.create({
     color: '#1A1D1F',
     fontWeight: '600',
   },
-  switchTextDesactive: {
-    color: 'white',
-  }, 
 });
 
 export default SideMenu;
