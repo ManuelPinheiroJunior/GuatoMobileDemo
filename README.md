@@ -1,36 +1,36 @@
-# GuatoMobileDemo
+#GuatoMobileDemo
 
-## Descrição
+##Description
 
-Este projeto consiste em um aplicativo React Native projetado para demonstrar várias funcionalidades e componentes, incluindo categorias, serviços, perfis, um menu lateral e uma página que consome a API de Rick and Morty.
+This project consists of a React Native application designed to demonstrate various functionality and components, including categories, services, profiles, a side menu, and a page that consumes a Rick and Morty API.
 
-## Funcionalidades
+## Functionalities
 
-### Página de Categorias
+### Categories Page
 
-- Exibe uma lista de todas as categorias disponíveis.
-- Permite aos usuários navegar por várias categorias para encontrar os serviços que precisam.
+- Display a list of all available categories.
+- Allows users to browse various categories to find the services they need.
 
-### Página de Serviços
+### Services Page
 
-- Exibe uma lista de serviços oferecidos.
-- Cada linha da lista apresenta, no mínimo, o nome do serviço, avaliação, descrição e preço.
+- View a list of services offered.
+- Each line in the list presents, at a minimum, the name of the service, evaluation, description and price.
 
-### Página de Perfil
+### Profile page
 
-- Permite aos usuários visualizar e editar suas informações de perfil, incluindo número de telefone, e-mail, gênero e data de nascimento.
+- Allow users to view and edit their profile information, including phone number, email, gender and birth details.
 
-### Menu Lateral
+### Lateral menu
 
-- Fornece navegação fácil para diferentes seções do aplicativo, como Home, Categorias, Serviços e Perfil.
+- Provides easy navigation to different app extensions like Home, Categories, Services and Profile.
 
 ### Rick and Morty API Page
 
-- Consome dados da API de Rick and Morty.
-- Exibe uma lista de personagens com seus detalhes, incluindo nome, status, espécie e imagem.
+- Consume data from the Rick and Morty API.
+- Displays a list of characters with their details including name, status, species and image.
 
 Screenshots
-Inclua algumas capturas de tela do seu aplicativo para mostrar seus recursos.
+Include some screenshots of your app to show its features.
 
 <img align="left" width="200" height="400" src="https://images-pinheiro.s3.us-east-2.amazonaws.com/Captura+de+ecr%C3%A3+2024-07-10+082508.png">
 <img align="left" width="200" height="400" src="https://images-pinheiro.s3.us-east-2.amazonaws.com/Captura+de+ecr%C3%A3+2024-07-10+082609.png">
