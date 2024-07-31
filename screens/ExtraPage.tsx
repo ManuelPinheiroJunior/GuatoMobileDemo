@@ -24,24 +24,20 @@ const CharacterList: React.FC = () => {
     try {
       const response = await axios.get('https://rickandmortyapi.com/api/character');
       setCharacters(response.data.results);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching characters:", error);
+    } finally {
       setLoading(false);
     }
   };
 
   const getSpeciesBackgroundColor = (species: string) => {
-    switch (species) {
-      case 'Human':
-        return '#A3D8F4';
-      case 'Alien':
-        return '#A3F4A3';
-      case 'Robot':
-        return '#F4E3A3';
-      default:
-        return '#F4A3A3';
-    }
+    const speciesColors: { [key: string]: string } = {
+      Human: '#A3D8F4',
+      Alien: '#A3F4A3',
+      Robot: '#F4E3A3',
+    };
+    return speciesColors[species] || '#F4A3A3';
   };
 
   const renderItem = ({ item }: { item: Character }) => (
