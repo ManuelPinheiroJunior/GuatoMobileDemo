@@ -25,6 +25,7 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
+  const [userText, setUserText] = useState('');
 
   const onProgress = () => {
      navigation.navigate('Categories'); 
