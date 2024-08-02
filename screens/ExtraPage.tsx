@@ -15,6 +15,7 @@ type Character = {
 const CharacterList: React.FC = () => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchCharacters();
@@ -24,8 +25,10 @@ const CharacterList: React.FC = () => {
     try {
       const response = await axios.get('https://rickandmortyapi.com/api/character');
       setCharacters(response.data.results);
+      setError(null);
     } catch (error) {
       console.error("Error fetching characters:", error);
+      setError("Failed to load characters. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -62,6 +65,14 @@ const CharacterList: React.FC = () => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Text style={styles.errorText}>{error}</Text>
       </View>
     );
   }
@@ -134,6 +145,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    color: 'red',
+    textAlign: 'center',
   },
 });
 
